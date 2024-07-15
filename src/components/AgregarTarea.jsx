@@ -1,16 +1,55 @@
 
 import { Flex, TextField } from '@radix-ui/themes'
+import { useState } from 'react'
+import propTypes from 'prop-types'
 
 
-import React from 'react'
+export const AgregarTarea = ({agregarNombre}) => {
 
-export const AgregarTarea = () => {
+    const [valorInput, setValorInput] = useState('')
+
+    const onChangeInput = (valor) => {
+
+        setValorInput(valor.target.value)
+    }
+
+    const capturarInformacion = (event) => {
+
+        // const nuevoNombre = {
+
+        //     nombre: valorInput,
+        //     valor: false
+        // }
+
+        event.preventDefault();
+
+        // agregarNombre(nombres => [...nombres, nuevoNombre])
+        
+        agregarNombre(valorInput)
+    }
+
     return (
         <>
-            <Flex direction="column" maxWidth="250px">
-                <TextField.Root color='indigo' variant='soft' placeholder='Nombre'></TextField.Root>
+            <form onSubmit={capturarInformacion} >
+                <Flex direction="column" maxWidth="250px">
+                    <TextField.Root
+                        color='indigo'
+                        variant='soft'
+                        placeholder='Nombre'
+                        value={valorInput}
 
-            </Flex>
+                        onChange={onChangeInput}
+                    >
+                    </TextField.Root>
+
+                </Flex>
+            </form>
         </>
     )
+}
+
+
+AgregarTarea.propTypes = {
+
+    agregarNombre: propTypes.func.isRequired
 }

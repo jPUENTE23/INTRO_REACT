@@ -1,4 +1,3 @@
-import React from 'react'
 import propTypes from 'prop-types'
 import { useState } from 'react'
 import { Button } from '@radix-ui/themes'
@@ -55,7 +54,8 @@ export const PrimerComponente = ({ nombre, appellidos, valor = 0 }) => {
 PrimerComponente.propTypes = {
 
   nombre: propTypes.string.isRequired,
-  appellidos: propTypes.string.isRequired
+  appellidos: propTypes.string.isRequired,
+  valor: propTypes.number.isRequired
 
 }
 
