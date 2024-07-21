@@ -1,7 +1,8 @@
 
-import { DataList, Flex, Badge, Code, IconButton, Link, Box, Card } from "@radix-ui/themes"
+import { DataList, Flex, Badge, Code,IconButton, Link, Box, Card } from "@radix-ui/themes"
 import propTypes from 'prop-types'
-import { useEffect, useState } from "react"
+import { useFetchData } from "../Hooks/useFetchData"
+// import { useEffect, useState } from "react"
 
 export const CardUser = ({ id, name, username, email }) => {
   return (
@@ -108,44 +109,23 @@ export const CardPost = ({ id, title, body }) => {
 
 export const Cards = ({ endpoint }) => {
 
-  const [Data, setData] = useState([])
+  const { Data, isLoading } = useFetchData(endpoint)
+  console.log(isLoading)
 
 
-  useEffect(() => {
-
-    const getUsuarios = async () => {
-
-      try {
-
-        const resposne = await fetch(`https://jsonplaceholder.typicode.com/${endpoint}`);
-
-        const data = await resposne.json()
-
-        console.log(data)
-        setData(data)
-      }
-      catch (error) {
-
-        console.error(error)
-      }
-
-    }
-
-    getUsuarios()
-  }, [endpoint])
 
   return (
     <>
-      {endpoint == 'users' ? Data.map(user => <CardUser key={user.id}
-        id={user.id}
-        name={user.name}
-        username={user.username}
-        email={user.email} ></CardUser>)
+      { endpoint == 'users' ? Data.map(user => <CardUser key={user.id}
+          id={user.id}
+          name={user.name}
+          username={user.username}
+          email={user.email} ></CardUser>)
 
-        : Data.map(post => <CardPost key={post.id}
-          id={post.id}
-          title={post.title}
-          body={post.body}></CardPost>)}
+          : Data.map(post => <CardPost key={post.id}
+            id={post.id}
+            title={post.title}
+            body={post.body}></CardPost>)}
     </>
   )
 }

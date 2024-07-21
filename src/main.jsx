@@ -6,14 +6,16 @@ import ReactDOM from 'react-dom/client'
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 // import { ListadoApp } from './ListadoApp';
-import { UsersApp } from './UsersApp';
+// import { UsersApp } from './UsersApp';
 
+// import { AppHook } from './AppHook';
 
+import {CFormulario} from './components/CFormulario.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Theme>
-      <UsersApp></UsersApp>
+      <CFormulario></CFormulario>
       {/* <PrimerComponente nombre="Lauren Eve" appellidos="Mayberry"></PrimerComponente> */}
     </Theme>
   </React.StrictMode>,
