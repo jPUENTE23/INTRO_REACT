@@ -19,3 +19,25 @@ export const getData = async (endpoint) => {
     }
 
 }
+
+
+export const getFetch = async (url) => {
+    try {
+        const response = await fetch(url)
+        const data = await response.json()
+
+        console.log(data)
+        return{
+            data,
+            isLoading: false,
+            errors: null
+        }
+    }
+    catch (error) {
+        return{
+            data: null,
+            isLoading: false,
+            errors: null
+        }
+    }
+}
