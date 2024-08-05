@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import { Navigate, Route, Routes } from 'react-router-dom'
+import './App.css'
+import { NavbarComponent } from './components/NavbarComponent'
+import { HomeRoute } from './Routes/HomeRoute'
+import { ContactRoute } from './Routes/ContactRoute'
+import { AbaoutRoute } from './Routes/AbaoutRoute'
+import { UsuarioProvider } from './Context/UsuarioProvider'
+import { LoginRoute } from './Routes/LoginRoute'
+
+export const App = () => {
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Primera aplicacion con React JS</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <UsuarioProvider>
+      <NavbarComponent></NavbarComponent>
+
+      <Routes>
+        <Route path='/' element={<HomeRoute></HomeRoute>}></Route>
+        <Route path='/Login' element={<LoginRoute></LoginRoute>}></Route>
+
+        <Route path='/abaout' element={<AbaoutRoute></AbaoutRoute>}></Route>
+
+        <Route path='/contact' element={<ContactRoute></ContactRoute>}></Route>
+
+        <Route path='/*' element={ <Navigate to='/'/>}></Route>
+      </Routes>
+
+    </UsuarioProvider>
   )
 }
 
-export default App
